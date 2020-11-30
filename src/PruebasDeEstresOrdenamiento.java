@@ -39,11 +39,13 @@ class MetodosOrdenamiento{
 		int pasadas = 0;
 			
 			tInicio = System.nanoTime();
+			pasadas=pasadas+1;
 			for (int i = 1;i<=numeros.length; i++) {
+				pasadas = pasadas +1;
 				for (int j = 0;j<=numeros.length-i-1; j++) {
-					pasadas = pasadas +1;
+					comparaciones= comparaciones +1;
 					if(numeros[j+1]<numeros[j]) {
-						comparaciones = comparaciones +1;
+						
 						int aux =numeros[j];
 						numeros[j] = numeros[j+1];
 						numeros[j+1] = aux;
@@ -71,13 +73,15 @@ class MetodosOrdenamiento{
 			int i =1;
 			boolean o=false;
 			tInicio = System.nanoTime();
+			pasadas ++;
 			while (i<numeros.length) {
 				i+=1;
 				o=true;
+				pasadas++;
 				for (int j = 0; j < numeros.length-i-1; j++) {
-					pasadas = pasadas + 1;
+					comparaciones++;
 					if(numeros[j]>numeros[j+1]) {
-						comparaciones++;
+					
 						o=false;
 						int aux = numeros[j];
 						numeros[j]=numeros[j+1];
@@ -102,13 +106,15 @@ class MetodosOrdenamiento{
 			
 			int i =1;
 			tInicio = System.nanoTime();
+			pasadas++;
 			do{
 				i+=1;
 				boolean o=true;
+				pasadas = pasadas +1;
 				for (int j = 0; j < numeros.length-i; j++) {
-					pasadas = pasadas +1;
+					comparaciones++;
 					if(numeros[j]>numeros[j+1]) {
-						comparaciones++;
+						
 						o=false;
 						int aux = numeros[j];
 						numeros[j]=numeros[j+1];
@@ -146,14 +152,15 @@ class MetodosOrdenamiento{
 			tFin = 0;
 			
 			tInicio = System.nanoTime();
+			pasadas++;
 			for (int i = 1; i < numeros.length; i++) {
 				aux=numeros[i];
 				pasadas++;
+				comparaciones++;
 				for (int j = i-1; j>=0 && numeros[j]>aux; j--) {
 					numeros[j+1]=numeros[j];
 					numeros[j]=aux;
 					comparaciones++;
-					pasadas++;
 					intercambios++;
 				}
 			}
@@ -175,8 +182,10 @@ class MetodosOrdenamiento{
 			tFin = 0;
 	
 			tInicio = System.nanoTime();
+			pasadas++;
 			for (int i = 0; i < numeros.length-1; i++) {
-			for (int j = i; j < numeros.length; j++) {
+				pasadas++;
+				for (int j = i; j < numeros.length; j++) {
 				comparaciones++;
 				if(numeros[i]>numeros[j]) {
 					intercambios++;
@@ -184,9 +193,9 @@ class MetodosOrdenamiento{
 					numeros[i] = numeros[j];
 					numeros[j]= minimo;
 				}
-				pasadas++;
+				
 			}
-			pasadas++;
+			
 			}
 			tFin = System.nanoTime();
 			System.out.println("Tiempo de ejecucion: " + (tFin-tInicio));
@@ -205,14 +214,17 @@ class MetodosOrdenamiento{
 			int pivote = numeros[izq];
 			int i = izq, j = der;
 			int aux;
+			pasadas++;
 			while(i<j) {
 				pasadas++;
+				comparaciones++;
 				while(numeros[i]<=pivote && i<j) {
 					i++;
 					pasadas++;
+					comparaciones++;
 				}
 				while(numeros[j]>pivote) {
-					pasadas++;
+					
 					j--;
 				}
 				if(i<j) {
@@ -225,7 +237,7 @@ class MetodosOrdenamiento{
 			intercambios++;
 			numeros[izq]=numeros[j];
 			numeros[j]=pivote;
-			comparaciones++;
+			
 			if(izq<j-1)
 				quicksort(numeros,izq,j-1);
 			comparaciones++;
@@ -254,10 +266,12 @@ class MetodosOrdenamiento{
 			int pasadas = 0;
 			int intervalo = numeros.length/2;
 			tInicio = System.nanoTime();
+			pasadas++;
 			while(intervalo>0) {
-				comparaciones++;
+				pasadas++;
 				for(int i = intervalo; numeros.length>i;i++ ) {
 					int j = i-intervalo;
+					pasadas++;
 					while(j>=0) {
 						int k = j+intervalo;
 						comparaciones++;
@@ -273,10 +287,10 @@ class MetodosOrdenamiento{
 						}
 						pasadas++;
 					}
-					pasadas++;
+					
 				}
 				intervalo = intervalo/2;
-				pasadas++;
+				
 			}
 		tFin=	System.nanoTime();
 		System.out.println("Tiempo de ejecucion: " + (tFin-tInicio));
